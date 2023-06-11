@@ -1,0 +1,5 @@
+#!/bin/bash
+
+PROGRAM_DIR="$HOME/.local/opt/mouse-software"
+
+python "$PROGRAM_DIR/driver_frontend.py"

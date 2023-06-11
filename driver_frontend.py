@@ -1,12 +1,20 @@
 import driver_backend
 import gi
 import configparser
+import os
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 from gi.repository import Gdk
 
 driver_api = driver_backend.Driver_API
 
+def get_config_path():
+    dir = os.path.expanduser("~") + "/.config/gamingmouse/"
+    
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+
+    return dir + "config.conf"
 
 class driver_frontend(Gtk.Window, driver_api):
     def __init__(self):
@@ -26,7 +34,7 @@ class driver_frontend(Gtk.Window, driver_api):
         self.cyclic_colors = {"Yellow": 1, "Blue": 1, "Violet": 1, "Green": 1, "Red": 1, "Cyan": 1, "White": 1}
         ########################################################################
 
-        self.config_location = "driver.conf"
+        self.config_location = get_config_path()
         self.startup()
 
         self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -185,7 +193,7 @@ class driver_frontend(Gtk.Window, driver_api):
 
         with open(self.config_location, "w") as configfile:
             config.write(configfile)
-
+    
     def retrieve_configs(self):
         config = configparser.ConfigParser()
         config.read(self.config_location)

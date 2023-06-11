@@ -170,7 +170,7 @@ class Driver(object):
         best_match = int()
         for supported in self.supported_dpis:
             temp_diff = DPI - supported
-            # print(temp_diff if temp_diff > 0 else temp_diff * -1)
+
             if (difference >= (temp_diff if temp_diff > 0 else temp_diff * -1)):
                 best_match = supported
                 difference = temp_diff
@@ -183,20 +183,3 @@ class Driver_API(Driver):
     class according to the MRO'''
     def __init__():
         super().__init__()
-
-
-# driver = Driver()
-# for i in range(200, 4801, 200):
-#     print(i, driver.find_closest_dpi(i))
-# driver.find_device()
-# driver.device_state()
-# payload = driver.create_color_profile_config(3, 255, 255, 255)
-# print(payload)
-# driver.send_payload(payload)
-#
-# payload = driver.create_rgb_lights_config("Cyclic", 1)
-# print(payload)
-# driver.send_payload(payload)
-#
-# # driver.set_active_profiles(1, 1, 1, 1, 1, 1)
-# driver.send_payload(driver.create_dpi_profile_config(6, 600, 6))
